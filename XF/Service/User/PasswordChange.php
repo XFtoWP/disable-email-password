@@ -2,20 +2,19 @@
 
 namespace Mangini\DisableEmailPassword\XF\Service\User;
 
+use Mangini\DisableEmailPassword\Framework;
+
 class PasswordChange extends XFCP_PasswordChange
 {
-	// let's use this method to prevent globally the password to be changed
 	public function isValid(&$error)
 	{
-		// if no permission plus the visitor is on Public page
-		if (!$this->user->hasPermission('generalPermissions', 'mg_edit_password') 
-			&& \XF::app() instanceof \XF\Pub\App)
+		if ( !Framework::canEdit($this->user, 'mg_edit_password') )
 		{
-			$error[] = \XF::phrase('do_not_have_permission')->__toString();
+			$error = \XF::phrase('do_not_have_permission');
+			
 			return false;
 		}
-
-		$m = parent::isValid($error);
-		return $m;
+		
+		return parent::isValid($error);
 	}
 }

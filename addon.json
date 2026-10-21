@@ -2,13 +2,22 @@
     "legacy_addon_id": "",
     "title": "Disable Email and Password",
     "description": "Disable edit email address and password permissions for selected user groups. Redirect \"Reset password\" and \"Edit profile\" links to your own offsite pages.",
-    "version_id": 1000070,
-    "version_string": "1.0.0",
+    "version_id": 1000170,
+    "version_string": "1.0.1",
     "dev": "Mangini",
-    "dev_url": "",
+    "dev_url": "https://kolakube.com",
     "faq_url": "",
-    "support_url": "",
+    "support_url": "https://github.com/XFtoWP/disable-email-password",
     "extra_urls": [],
-    "require": [],
+    "require": {
+        "XF": [
+            2020000,
+            "XenForo 2.2.0+"
+        ],
+        "php": [
+            "7.2.0",
+            "PHP 7.2.0+"
+        ]
+    },
     "icon": "fa-key"
 }

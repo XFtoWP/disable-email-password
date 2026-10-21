@@ -2,44 +2,33 @@
 
 namespace Mangini\DisableEmailPassword\XF\Pub\Controller;
 
-use XF\Mvc\Entity\ArrayCollection;
-use XF\Mvc\ParameterBag;
-use XF\Mvc\FormAction;
 use XF\Mvc\Reply\View;
 
 class Account extends XFCP_Account
 {
 	public function actionEmail()
 	{
-		if (!\XF::visitor()->hasPermission('generalPermissions', 'mg_edit_email'))
+		if ( !\XF::visitor()->hasPermission('generalPermissions', 'mg_edit_email') )
 		{
-			$custom_url = \XF::app()->options()->mg_emailchange_custom_link;
-			if (!$custom_url)
-			{
+			$customUrl = $this->options()->mg_emailchange_custom_link;
+			
+			if ( !$customUrl )
 				return $this->error(\XF::phrase('do_not_have_permission'));
-			}
-			else
-			{
-				header('Location: ' . $custom_url);
-				die();
-			}
+			
+			return $this->redirect($customUrl);
 		}
 		
-		$m = parent::actionEmail();
-		return $m;
+		return parent::actionEmail();
 	}
 	
 	public function actionSecurity()
 	{
-		$u = \XF::visitor();
+		$reply = parent::actionSecurity();
 		
-		$m = parent::actionSecurity();
+		# only show the password form to members who have a password and may change it
+		if ( $reply instanceof View )
+			$reply->setParam('hasPassword', $reply->getParam('hasPassword') && \XF::visitor()->hasPermission('generalPermissions', 'mg_edit_password'));
 		
-		if (method_exists($m, 'setParam'))
-		{
-			$m->setParam('hasPassword', $u->hasPermission('generalPermissions', 'mg_edit_password'));
-		}
-		
-		return $m;
-	}	
+		return $reply;
+	}
 }

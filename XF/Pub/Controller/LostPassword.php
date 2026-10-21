@@ -3,33 +3,28 @@
 namespace Mangini\DisableEmailPassword\XF\Pub\Controller;
 
 use XF\Mvc\ParameterBag;
-use XF\Mvc\Reply\AbstractReply;
 
 class LostPassword extends XFCP_LostPassword
 {
 	public function actionIndex()
 	{
-		$custom_url = \XF::app()->options()->mg_forgotpassword_custom_link;
-		$disabled = \XF::app()->options()->mg_disable_resetpassword_login;
+		$options = $this->options();
 		
-		if ($disabled)
-		{
+		if ( $options->mg_disable_resetpassword_login )
 			return $this->error(\XF::phrase('do_not_have_permission'));
-		}
 		
-		if (!$custom_url && !$disabled)
-		{
-			return parent::actionIndex();
-		}
+		if ( $options->mg_forgotpassword_custom_link )
+			return $this->redirect($options->mg_forgotpassword_custom_link);
 		
-		if ($custom_url)
-		{
-			header('Location: ' . $custom_url);
-			die();
-		}
-		else
-		{
+		return parent::actionIndex();
+	}
+	
+	# reset links that were emailed before password reset was disabled stop working too
+	public function actionConfirm(ParameterBag $params)
+	{
+		if ( $this->options()->mg_disable_resetpassword_login )
 			return $this->error(\XF::phrase('do_not_have_permission'));
-		}			
+		
+		return parent::actionConfirm($params);
 	}
 }
