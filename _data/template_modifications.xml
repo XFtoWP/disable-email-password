@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template_modifications>
+  <modification type="public" template="account_details" modification_key="mg_disable_email_pass_mod1" description="Modify the &quot;email change&quot; button on Account Details page." execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:button href="{{ link('account/email') }}" class="button--link" overlay="true">{{ phrase('change') }}</xf:button>]]></find>
+    <replace><![CDATA[<xf:if is="$xf.visitor.hasPermission('generalPermissions', 'mg_edit_email')">
+	$0
+<xf:else />
+	<xf:if is="$xf.options.mg_emailchange_custom_link">
+		<a href="{$xf.options.mg_emailchange_custom_link}" target="_self" overlay="false" data-xf-click="false"><xf:button class="button--link">{{ phrase('change') }}</xf:button></a>
+	</xf:if>
+</xf:if>]]></replace>
+  </modification>
+  <modification type="public" template="account_security" modification_key="mg_disable_email_pass_mod2" description="Security page - just hide a useless notice." execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[label="{{ phrase('password') }}"]]></find>
+    <replace><![CDATA[$0 style="display:{{ $xf.visitor.hasPermission('generalPermissions', 'mg_edit_password') ? 'block' : 'none' }}"
+
+]]></replace>
+  </modification>
+  <modification type="public" template="account_security" modification_key="mg_disable_email_pass_mod4" description="Apply &quot;Edit password&quot; placeholder if needed." execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[		</div>
+		<xf:if is="$hasPassword">]]></find>
+    <replace><![CDATA[<xf:if is="!$xf.visitor.hasPermission('generalPermissions', 'mg_edit_password') && $xf.options.mg_emailchange_custom_link">
+	<xf:formrow label="{{ phrase('mg_edit_password') }}" rowtype="button">
+		<a href="{$xf.options.mg_emailchange_custom_link}" target="_self" overlay="false">
+			<xf:button class="button--link">{{ phrase('change') }}</xf:button>
+		</a>
+	</xf:formrow>	
+</xf:if>
+$0]]></replace>
+  </modification>
+  <modification type="public" template="login" modification_key="mg_disable_email_pass_mod3" description="Hide / show &quot;forgot password&quot; link." execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<a href="{{ link('lost-password') }}" data-xf-click="overlay">]]></find>
+    <replace><![CDATA[<xf:if is="$xf.options.mg_disable_resetpassword_login">
+	<a href="{{ link('lost-password') }}" data-xf-click="overlay" style="display:none;">
+<xf:else />
+		<xf:if is="$xf.options.mg_forgotpassword_custom_link">
+			<a href="{$xf.options.mg_forgotpassword_custom_link}" data-xf-click="false">
+		<xf:else />
+			<a href="{{ link('lost-password') }}" data-xf-click="overlay">
+		</xf:if>
+</xf:if>]]></replace>
+  </modification>
+</template_modifications>

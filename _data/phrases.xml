@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="mg_edit_password" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Edit password]]></phrase>
+  <phrase title="option.mg_disable_resetpassword_login" version_id="1000070" version_string="1.0.0"><![CDATA[Disable password reset]]></phrase>
+  <phrase title="option.mg_emailchange_custom_link" version_id="1000050" version_string="1.0.0 Release Candidate"><![CDATA[Edit profile custom URL]]></phrase>
+  <phrase title="option.mg_forgotpassword_custom_link" version_id="1000050" version_string="1.0.0 Release Candidate"><![CDATA[Reset password custom URL]]></phrase>
+  <phrase title="option_explain.mg_disable_resetpassword_login" version_id="1000070" version_string="1.0.0"><![CDATA[If enabled, custom reset password URL will be ignored.]]></phrase>
+  <phrase title="option_explain.mg_emailchange_custom_link" version_id="1000050" version_string="1.0.0 Release Candidate"><![CDATA[Enter the custom link where users can go to edit their email address and password.]]></phrase>
+  <phrase title="option_explain.mg_forgotpassword_custom_link" version_id="1000050" version_string="1.0.0 Release Candidate"><![CDATA[Enter the custom link where users can go to reset their password.]]></phrase>
+  <phrase title="permission.generalPermissions_mg_edit_email" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Edit email address]]></phrase>
+  <phrase title="permission.generalPermissions_mg_edit_password" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Edit password]]></phrase>
+</phrases>

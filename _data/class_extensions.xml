@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<class_extensions>
+  <extension from_class="XF\Pub\Controller\Account" to_class="Mangini\DisableEmailPassword\XF\Pub\Controller\Account" execute_order="10" active="1"/>
+  <extension from_class="XF\Pub\Controller\LostPassword" to_class="Mangini\DisableEmailPassword\XF\Pub\Controller\LostPassword" execute_order="10" active="1"/>
+  <extension from_class="XF\Service\User\EmailChange" to_class="Mangini\DisableEmailPassword\XF\Service\User\EmailChange" execute_order="10" active="1"/>
+  <extension from_class="XF\Service\User\PasswordChange" to_class="Mangini\DisableEmailPassword\XF\Service\User\PasswordChange" execute_order="10" active="1"/>
+</class_extensions>

@@ -1,0 +1,14 @@
+{
+    "legacy_addon_id": "",
+    "title": "Disable Email and Password",
+    "description": "Disable edit email address and password permissions for selected user groups. Redirect \"Reset password\" and \"Edit profile\" links to your own offsite pages.",
+    "version_id": 1000070,
+    "version_string": "1.0.0",
+    "dev": "Mangini",
+    "dev_url": "",
+    "faq_url": "",
+    "support_url": "",
+    "extra_urls": [],
+    "require": [],
+    "icon": "fa-key"
+}

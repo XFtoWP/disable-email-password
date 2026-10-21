@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<options>
+  <option option_id="mg_disable_resetpassword_login" edit_format="onoff" data_type="boolean">
+    <default_value>0</default_value>
+    <relation group_id="users" display_order="608"/>
+  </option>
+  <option option_id="mg_emailchange_custom_link" edit_format="textbox" data_type="string">
+    <default_value></default_value>
+    <relation group_id="users" display_order="607"/>
+  </option>
+  <option option_id="mg_forgotpassword_custom_link" edit_format="textbox" data_type="string">
+    <default_value></default_value>
+    <relation group_id="users" display_order="609"/>
+  </option>
+</options>
